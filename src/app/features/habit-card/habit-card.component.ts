@@ -1,9 +1,12 @@
 import { Component, Input } from "@angular/core";
 import { Habit } from "../../core/models/habit.model";
 import { HabitService } from "../../core/services/habit.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector:'app-habit-card',
+    standalone:true,
+    imports:[CommonModule],
     templateUrl:'./habit-card.component.html',
     styleUrls:['./habit-card.component.css']
 })
