@@ -6,6 +6,7 @@ import { AddHabitComponent } from './features/habit-toggle/add-habit.component';
 import { HeaderComponent } from './features/habit-header/habit-header.component';
 import { NgIf } from "@angular/common";
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

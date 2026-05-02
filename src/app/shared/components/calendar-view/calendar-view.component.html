@@ -9,17 +9,17 @@
             </div>
         </div>
         <div class="calendar-grid">
-            <div *ngFor="let cell of calendarCells" class="day-cell"
+            <div *ngFor="let cell of calendarCells()" class="day-cell"
               [class.empty]="!cell.date"
               [class.active]="cell.isToday">
               <span *ngIf="cell.date" class="day-number">
                 {{cell.dayNumber}}
               </span>
-              <!-- <div class="day" *ngFor="let date of ">
+              <div class="day">
                 <span class="completed-dot"
-                *ngIf="isCompleted(date)">
+                *ngIf="cell.date && cell.isCompleted">
                 </span>
-              </div> -->
+              </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<!-- Quick Toggle -->
+
 <div class="quick-toggle">
   <button
     *ngFor="let cat of categories"
@@ -9,8 +9,7 @@
   </button>
 </div>
 
-<!-- Habit Cards (DYNAMIC from service) -->
-<div class="habit-list">
+<div class="habit-list" *ngIf="habitService.getHabits().length > 0; else noHabits">
   <div
     class="habit-card"
     *ngFor="let habit of filteredHabits; let i = index"
@@ -31,11 +30,18 @@
       <span class="checkmark">✔</span>
     </button>
 
-    <!-- <div class="progress-container">
-        <div class="progress-bar"
-            [class.completed]="progress(habit.id)"===100
-            [style.width.%]="progress(habit.id)">
-        </div>
-    </div> -->
+    <button
+      class="delete-btn"
+      (click)="habitService.deleteHabit(habit.id)"
+    >
+        ⛔
+
+    </button>
   </div>
 </div>
+
+<ng-template #noHabits>
+  <div class="empty-state">
+    <p>✨ No habits found. Time to start a new journey!</p>
+  </div>
+</ng-template>

@@ -34,12 +34,6 @@
   transition: transform .4s ease, opacity .4s ease;
 }
 
-/* ✅ Animation on complete */
-/* .habit-card.completed {
-  transform: translateX(40px);
-  opacity: 0.5;
-} */
-
 .complete-btn {
   width: 40px;
   height: 40px;
@@ -107,4 +101,19 @@
 
 .progress-bar.completed{
     background-color: #22c55e;
+}
+
+.delete-btn{
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.2s ease,transform 0.2s ease;
+}
+
+.delete-btn:hover{
+  opacity: 1;
+  transform: scale(1.1);
 }

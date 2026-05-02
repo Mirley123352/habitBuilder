@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { HabitService } from "../../core/services/habit.service";
 import { CommonModule } from "@angular/common";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+//<<<<<<< HEAD
  import { StreakGlowDirective } from '../../shared/directives/streak-glow.directive';
 // @Component({
 //     selector:'app-habit-card',
@@ -36,6 +37,8 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
 //         this.habitService.completeHabit(this.habit);
 //     }
 // }
+//=======
+//>>>>>>> eee413fe957a1aac966f6f6cb048610cf5862fcd
 
 @Component({
     selector:'app-habit',
@@ -52,9 +55,9 @@ export class HabitCardComponent{
         return this.habitService.getHabitsBySelectedCategory();
     }
 
-    // toggleComplete(habitId:number){
-    //     this.habitService.toggleToday(habitId);
-    // }
+    toggleComplete(habitId:number){
+        this.habitService.toggleToday(habitId);
+    }
 
     // progress(habitId:number){
     //     return this.habitService.getWeeklyProgress(habitId);

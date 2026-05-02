@@ -74,3 +74,14 @@
     background-color: #f0fdfa;
     border-left: 4px solid #0f766e;
 }
+
+.completed-dot{
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #22c55e;
+}

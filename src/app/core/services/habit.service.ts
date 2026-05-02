@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable ,signal,computed} from "@angular/core";
 import { Habit } from "../models/habit.model";
 import { StorageService } from "./storage.service";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({providedIn:'root'})
 export class HabitService{
+    private habitsSignal = signal<Habit[]>([]);
     
     
   private habitsSubject = new BehaviorSubject<Habit[]>([]);
@@ -15,8 +16,12 @@ export class HabitService{
   }
     selectedCategory:string='All';
 
+    private refresh() {
+    this.habitsSignal.set(this.storage.getHabits());
+    }
+
     getHabits():Habit[]{
-        return this.storage.getHabits();
+        return this.habitsSignal();
     }
 
     getHabitsBySelectedCategory(){
@@ -26,12 +31,19 @@ export class HabitService{
         return this.getHabits().filter(
             habit=>habit.category===this.selectedCategory
         );
+        
     }
 
     addHabit(habit:Habit){
         const habits=this.getHabits();
         habits.unshift(habit);
         this.storage.setHabits(habits);
+        this.refresh();
+    }
+
+    deleteHabit(habitId:number):void{
+        this.storage.deleteHabit(habitId);
+        this.refresh();
     }
 
     completeHabit(habit:Habit){
@@ -40,13 +52,19 @@ export class HabitService{
         if(!habit.completedDates.includes(today)){
             habit.completedDates.push(today);
             habit.streak++;
-            this.storage.setHabits(this.getHabits());
+
         }
         else{
             habit.completedDates=habit.completedDates.filter(d=>d!==today);
             habit.streak = this.calculateStreak(habit); // ← replace habit.streak--
             this.storage.setHabits(this.getHabits());
         }
+        const currentHabits = this.habitsSignal();
+
+        this.storage.setHabits(currentHabits);
+
+        this.habitsSignal.set([...currentHabits]);
+        this.refresh();
     }
 
     toggleToday(habitId:number){
@@ -64,6 +82,8 @@ export class HabitService{
             habit.streak = this.calculateStreak(habit); // ← replace habit.streak--
         this.storage.setHabits(this.getHabits());
         }
+        this.storage.setHabits(this.getHabits());
+        this.refresh();
     }
 
     getWeeklyProgress(habitId:number):number{
