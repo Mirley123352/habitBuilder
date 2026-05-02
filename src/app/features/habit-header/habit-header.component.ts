@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit {
     this.progressPct = this.habitService.getOverallWeeklyProgress();
   }
  ngOnInit(): void {
-    // ← every time habits change, recalculate
     this.sub = this.habitService.habits$.subscribe(() => {
       this.overallStreak = this.habitService.getMaxStreak();
       this.progressPct = this.habitService.getOverallWeeklyProgress();
