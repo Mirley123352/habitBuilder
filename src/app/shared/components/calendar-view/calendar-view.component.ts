@@ -24,9 +24,20 @@ export class CalendarComponent implements OnInit{
         this.buildCalendar();
     }
 
-    isCompleted(date:Date):boolean{
-        const key=date.toISOString().split('T')[0];
+    isCompleted(date:Date|null):boolean{
+        if(!date){
+            return false;
+        }
+        const key=this.toLocalDateKey(date);
         return this.completedDates.has(key);
+    }
+
+    private toLocalDateKey(date:Date):string{
+        const year=date.getFullYear();
+        const month=(date.getMonth()+1).toString().padStart(2,'0');
+        const day=date.getDate().toString().padStart(2,'0');
+
+        return `${year}-${month}-${day}`;
     }
 
     buildCalendar():void{

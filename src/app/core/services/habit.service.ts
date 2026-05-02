@@ -29,6 +29,10 @@ export class HabitService{
         this.storage.setHabits(habits);
     }
 
+    // deleteHabit(habitId:number):void{
+    //     this.getHabits=this.getHabits().filter(h=>h.id!==habitId);
+    // }
+
     completeHabit(habit:Habit){
         
         const today=new Date().toISOString().split('T')[0];

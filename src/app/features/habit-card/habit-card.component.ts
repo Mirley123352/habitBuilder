@@ -52,9 +52,9 @@ export class HabitCardComponent{
         return this.habitService.getHabitsBySelectedCategory();
     }
 
-    // toggleComplete(habitId:number){
-    //     this.habitService.toggleToday(habitId);
-    // }
+    toggleComplete(habitId:number){
+        this.habitService.toggleToday(habitId);
+    }
 
     // progress(habitId:number){
     //     return this.habitService.getWeeklyProgress(habitId);
@@ -62,6 +62,5 @@ export class HabitCardComponent{
     
     selectCategory(cat:string){
         this.habitService.selectedCategory=cat;
-    }
-    
+    }   
 }
