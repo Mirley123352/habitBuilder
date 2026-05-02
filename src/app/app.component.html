@@ -18,7 +18,9 @@
         <div class="modal-overlay" *ngIf="isModalOpen" (click)="toggleModal()">
           <div class="modal-content"(click)="$event.stopPropagation()">
             <button class="close-btn"(click)="toggleModal()">X</button>
+            <div>
             <app-add-habit></app-add-habit>
+            </div>
           </div>
         </div>
       </div>
