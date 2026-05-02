@@ -22,16 +22,5 @@
     </div>
   </div>
 
-  <div class="category-tabs">
-    <button
-      *ngFor="let cat of categories"
-      class="cat-tab"
-      [class.active]="activeCategory === cat.value"
-      (click)="setCategory(cat.value)"
-    >
-      <span>{{ cat.icon }}</span>
-      <span>{{ cat.label }}</span>
-    </button>
-  </div>
 
 </header>

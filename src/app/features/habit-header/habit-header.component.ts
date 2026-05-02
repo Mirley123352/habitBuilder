@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { HabitService } from '../../core/services/habit.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 interface Category {
@@ -27,12 +27,7 @@ export class HeaderComponent implements OnInit {
   overallStreak = 0;
   progressPct = 0;
   activeCategory = 'all';
-  categories: Category[] = [
-    { value: 'all',      label: 'All',      icon: '✨' },
-    { value: 'health',   label: 'Health',   icon: '💪' },
-    { value: 'work',     label: 'Work',     icon: '🎯' },
-    { value: 'personal', label: 'Personal', icon: '🌱' },
-  ];
+  
   constructor(private habitService: HabitService) {}
   ngOnInit(): void {
     this.loadStats();
