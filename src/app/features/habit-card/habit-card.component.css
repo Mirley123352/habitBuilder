@@ -34,12 +34,6 @@
   transition: transform .4s ease, opacity .4s ease;
 }
 
-/* ✅ Animation on complete */
-/* .habit-card.completed {
-  transform: translateX(40px);
-  opacity: 0.5;
-} */
-
 .complete-btn {
   width: 40px;
   height: 40px;
@@ -116,7 +110,6 @@
     font-size: 16px;
     cursor: pointer;
     font-size: 16px;
-    opacity: 0.5;
     transition: opacity 0.2s ease,transform 0.2s ease;
 }
 

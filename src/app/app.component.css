@@ -14,15 +14,11 @@
 }
 
 .content{
-    /* display: flex;
-    align-items: flex-start; */
     width: 100%;
     gap: 24px;
 }
 
 .habit-panel{
-    /* flex: 1; */
-    /* overflow-y: auto; */
     margin-top: 72px;
     margin-right: 300px;
     padding: 88px;

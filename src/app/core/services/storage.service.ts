@@ -16,8 +16,11 @@ export class StorageService{
     }
 
     deleteHabit(habitId:number):void{
+        const confirmed=confirm('Are you sure you want to delete this habit?');
+        if(confirmed){
         this.habits=this.habits.filter(h=>h.id!==habitId);
         this.saveToStorage();
+        }
     }
 
     setHabits(habits:Habit[]):void{

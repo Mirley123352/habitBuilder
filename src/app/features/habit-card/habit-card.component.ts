@@ -3,40 +3,6 @@ import { HabitService } from "../../core/services/habit.service";
 import { CommonModule } from "@angular/common";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 
-// @Component({
-//     selector:'app-habit-card',
-//     standalone:true,
-//     imports:[CommonModule],
-//     templateUrl:'./habit-card.component.html',
-//     styleUrls:['./habit-card.component.css'],
-//     animations:[
-//         trigger('streakGlow',[
-//             state('inactive',style({
-//                 boxShadow:'none',
-//                 transform:'scale(1)',
-//                 border:'2px solid #ffff'
-//             })),
-//             state('inactive',style({
-//                 boxShadow:'none',
-//                 transform:'scale(1.07)',
-//                 border:'2px solid #0000'
-//             })),
-//             transition('inactive=>active',animate('350ms ease-out')),
-//             transition('active=>inactive',animate('200ms ease-in')),
-//         ])
-//     ]
-// })
-// export class HabitCardComponent{
-//     @Input()habit!:Habit;
-
-//     constructor(private habitService:HabitService){
-//     }
-    
-//     complete(){
-//         this.habitService.completeHabit(this.habit);
-//     }
-// }
-
 @Component({
     selector:'app-habit',
     standalone:true,
