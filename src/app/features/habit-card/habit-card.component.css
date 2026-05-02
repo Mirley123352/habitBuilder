@@ -1,0 +1,110 @@
+.quick-toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.quick-toggle button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+.quick-toggle button.active {
+  background: #6200ea;
+  color: white;
+}
+
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.habit-card {
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  transition: transform .4s ease, opacity .4s ease;
+}
+
+/* ✅ Animation on complete */
+/* .habit-card.completed {
+  transform: translateX(40px);
+  opacity: 0.5;
+} */
+
+.complete-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #6200ea;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.complete-btn .checkmark {
+  font-size: 18px;
+  color: transparent;
+  transition: all 0.3s ease;
+  transform: scale(0);
+}
+
+/* When checked */
+.complete-btn.checked {
+  background: #6200ea;
+  border-color: #6200ea;
+  animation: popCheck 0.4s ease forwards;
+}
+
+.complete-btn.checked .checkmark {
+  color: white;
+  transform: scale(1);
+}
+
+/* Pop animation */
+@keyframes popCheck {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.3); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* Card fade when completed */
+.habit-card.completed {
+  transform: translateX(40px);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.progress-container{
+    width: 100%;
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar{
+    height: 100%;
+    width: 0%;
+    background-color: #6366f1;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-bar.completed{
+    background-color: #22c55e;
+}

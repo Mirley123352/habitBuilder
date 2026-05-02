@@ -1,12 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { Habit } from "../models/habit.model";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({providedIn:'root'})
 export class StorageService{
     private storageKey ='habits';
     private habits:Habit[];
 
-    constructor(){
+    constructor(@Inject(PLATFORM_ID) private platformId:Object){
         this.habits=this.loadFromStorage();
     }
 
@@ -20,11 +21,16 @@ export class StorageService{
     }
 
     private saveToStorage():void{
-        localStorage.setItem(this.storageKey,JSON.stringify(this.habits));
+        if(isPlatformBrowser(this.platformId)){
+          localStorage.setItem(this.storageKey,JSON.stringify(this.habits));
+        }
     }
 
     private loadFromStorage():Habit[]{
-        const data=localStorage.getItem(this.storageKey);
-        return data ? JSON.parse(data):[];
+        if(isPlatformBrowser(this.platformId)){
+          const data=localStorage.getItem(this.storageKey);
+          return data ? JSON.parse(data):[];
+        }
+        return [];
     }
 }

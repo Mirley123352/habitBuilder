@@ -1,0 +1,13 @@
+<div class="add-habit">
+    <input type="text"
+    placeholder="Habit Name"
+    [(ngModel)]="name"/>
+    <div class="icon-picker">
+        <span *ngFor="let icon of icons"
+          (click)="selectedIcon=icon"
+          [class.selected]="selectedIcon===icon">
+          {{icon}}
+        </span>
+    </div>
+    <button class="add-btn"(click)="addHabit()">Add Habit</button>
+</div>

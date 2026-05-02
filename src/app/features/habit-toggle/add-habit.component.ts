@@ -1,29 +1,34 @@
 import { Component } from "@angular/core";
 import { HabitService } from "../../core/services/habit.service";
 import { FormsModule } from "@angular/forms";
+import { CommonModule, NgForOf } from "@angular/common";
 
 @Component({
     selector:'app-add-habit',
     standalone:true,
-    imports:[FormsModule],
-    templateUrl:'./add.habit.component.html'
+    imports: [FormsModule, NgForOf, CommonModule],
+    templateUrl:'./add-habit.component.html',
+    styleUrls:['./add-habit.component.css']
 })
 export class AddHabitComponent{
     name='';
     category:any='Health';
     selectedIcon='🔨';
 
-    icons=['📚','🤸‍♀️','⭐','🛌','🔨'];
+    icons=['🔨','📚','🤸‍♀️','⭐','🛌'];
     
     constructor(private habitService:HabitService){
 
     }
     addHabit(){
+        if(!this.habitService.selectedCategory||this.habitService.selectedCategory==='All'){
+            return;
+        }
         this.habitService.addHabit({
             id:Date.now(),
             name:this.name,
             icon:this.selectedIcon,
-            category:this.category,
+            category:this.habitService.selectedCategory,
             streak:0,
             completedDates:[],
             weeklyGoal:5
