@@ -30,6 +30,14 @@
       <span class="checkmark">✔</span>
     </button>
 
+    <button
+      class="delete-btn"
+      (click)="habitService.deleteHabit(habit.id)"
+    >
+        ⛔
+      <!-- <span class="trash-icon">🗑️</span> -->
+    </button>
+
     <!-- <div class="progress-container">
         <div class="progress-bar"
             [class.completed]="progress(habit.id)"===100

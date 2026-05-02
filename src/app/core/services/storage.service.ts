@@ -15,6 +15,11 @@ export class StorageService{
         return this.habits;
     }
 
+    deleteHabit(habitId:number):void{
+        this.habits=this.habits.filter(h=>h.id!==habitId);
+        this.saveToStorage();
+    }
+
     setHabits(habits:Habit[]):void{
         this.habits=habits;
         this.saveToStorage();

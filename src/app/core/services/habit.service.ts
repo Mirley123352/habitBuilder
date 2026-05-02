@@ -29,9 +29,9 @@ export class HabitService{
         this.storage.setHabits(habits);
     }
 
-    // deleteHabit(habitId:number):void{
-    //     this.getHabits=this.getHabits().filter(h=>h.id!==habitId);
-    // }
+    deleteHabit(habitId:number):void{
+        this.storage.deleteHabit(habitId);
+    }
 
     completeHabit(habit:Habit){
         

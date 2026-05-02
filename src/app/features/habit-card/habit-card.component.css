@@ -108,3 +108,19 @@
 .progress-bar.completed{
     background-color: #22c55e;
 }
+
+.delete-btn{
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.5;
+    transition: opacity 0.2s ease,transform 0.2s ease;
+}
+
+.delete-btn:hover{
+  opacity: 1;
+  transform: scale(1.1);
+}
