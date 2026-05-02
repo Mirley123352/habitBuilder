@@ -3,12 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { CalendarComponent } from './shared/components/calendar-view/calendar-view.component';
 import { HabitCardComponent } from './features/habit-card/habit-card.component';
 import { AddHabitComponent } from './features/habit-toggle/add-habit.component';
+import { HeaderComponent } from './features/habit-header/habit-header.component';
 import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CalendarComponent, AddHabitComponent, NgIf, HabitCardComponent],
+  imports: [RouterOutlet, CalendarComponent, AddHabitComponent, NgIf, HabitCardComponent,HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
