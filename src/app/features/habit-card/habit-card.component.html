@@ -16,7 +16,8 @@
     *ngFor="let habit of filteredHabits; let i = index"
     [class.completed]="habit.completedDates"
     [hidden]="habitService.selectedCategory !== 'All' && habit.category !== habitService.selectedCategory"
-  >
+    [appStreakGlow]="habit.streak"
+    >
     <div>
       <h3>{{ habit.icon }} {{ habit.name }}</h3>
       <span>{{ habit.category }}</span>

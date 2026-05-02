@@ -2,11 +2,11 @@ import { Component, Input } from "@angular/core";
 import { HabitService } from "../../core/services/habit.service";
 import { CommonModule } from "@angular/common";
 import { animate, state, style, transition, trigger } from "@angular/animations";
-
+ import { StreakGlowDirective } from '../../shared/directives/streak-glow.directive';
 // @Component({
 //     selector:'app-habit-card',
 //     standalone:true,
-//     imports:[CommonModule],
+//     imports:[CommonModule],5
 //     templateUrl:'./habit-card.component.html',
 //     styleUrls:['./habit-card.component.css'],
 //     animations:[
@@ -40,7 +40,7 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
 @Component({
     selector:'app-habit',
     standalone:true,
-    imports:[CommonModule],
+     imports: [CommonModule, StreakGlowDirective],
     templateUrl:'./habit-card.component.html',
     styleUrls:['./habit-card.component.css'],
 })
@@ -63,5 +63,6 @@ export class HabitCardComponent{
     selectCategory(cat:string){
         this.habitService.selectedCategory=cat;
     }
-    
+   
+
 }
