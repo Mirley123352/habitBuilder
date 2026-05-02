@@ -40,6 +40,8 @@ export class HabitService{
         }
         else{
             habit.completedDates=habit.completedDates.filter(d=>d!==today);
+            habit.streak = this.calculateStreak(habit); // ← replace habit.streak--
+            this.storage.setHabits(this.getHabits());
         }
     }
 
@@ -55,6 +57,8 @@ export class HabitService{
         }
         else{
             habit.completedDates=habit.completedDates.filter(d=>d!==today);
+            habit.streak = this.calculateStreak(habit); // ← replace habit.streak--
+        this.storage.setHabits(this.getHabits());
         }
     }
 
@@ -112,9 +116,29 @@ getMaxStreak(): number {
 
     return Math.max(...habits.map(h => h.streak));
 }
-  private categorySubject = new BehaviorSubject<string>('all');
-  selectedCategory$ = this.categorySubject.asObservable();
-  setCategory(category: string) {
-    this.categorySubject.next(category);
-  }
+
+
+    private calculateStreak(habit: Habit): number {
+        if (habit.completedDates.length === 0) return 0;
+
+        const sorted = [...habit.completedDates].sort().reverse();
+        let streak = 0;
+        let check = new Date();
+        check.setHours(0, 0, 0, 0);
+
+        for (const dateStr of sorted) {
+            const d = new Date(dateStr);
+            d.setHours(0, 0, 0, 0);
+
+            const diffDays = Math.round((check.getTime() - d.getTime()) / 86400000);
+
+            if (diffDays === 0 || diffDays === 1) {
+                streak++;
+                check = d;
+            } else {
+                break;
+            }
+        }
+        return streak;
+    }
 }

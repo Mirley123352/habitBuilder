@@ -36,8 +36,5 @@ export class HeaderComponent implements OnInit {
     this.overallStreak = this.habitService.getMaxStreak();
     this.progressPct = this.habitService.getOverallWeeklyProgress();
   }
-  setCategory(value: string): void {
-    this.activeCategory = value;
-    this.habitService.setCategory(value);
-  }
+
 }
