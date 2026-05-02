@@ -1,0 +1,40 @@
+<!-- Quick Toggle -->
+<div class="quick-toggle">
+  <button
+    *ngFor="let cat of categories"
+    (click)="selectCategory(cat)"
+    [class.active]="habitService.selectedCategory===cat"
+  >
+    {{ cat }}
+  </button>
+</div>
+
+<!-- Habit Cards (DYNAMIC from service) -->
+<div class="habit-list">
+  <div
+    class="habit-card"
+    *ngFor="let habit of filteredHabits; let i = index"
+    [class.completed]="habit.completedDates"
+    [hidden]="habitService.selectedCategory !== 'All' && habit.category !== habitService.selectedCategory"
+  >
+    <div>
+      <h3>{{ habit.icon }} {{ habit.name }}</h3>
+      <span>{{ habit.category }}</span>
+    </div>
+
+    <button
+      class="complete-btn"
+      [class.checked]="habitService.isCompleted(habit)"
+      (click)="habitService.completeHabit(habit)"
+    >
+      <span class="checkmark">✔</span>
+    </button>
+
+    <!-- <div class="progress-container">
+        <div class="progress-bar"
+            [class.completed]="progress(habit.id)"===100
+            [style.width.%]="progress(habit.id)">
+        </div>
+    </div> -->
+  </div>
+</div>

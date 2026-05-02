@@ -7,7 +7,7 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<style>
+<!-- <style>
   :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
@@ -322,7 +322,7 @@
       </div>
     </div>
   </div>
-</main>
+</main> -->
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
@@ -333,4 +333,33 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />
+<!-- <router-outlet /> -->
+
+<section class="container">
+  <div class="content">
+    
+    <div class="title">
+      <span class="subtitle">Subtitle will go here</span>
+      <h1>Title copy goes here</h1>
+    </div>
+    <div class="habit-panel">
+      <div>
+        <app-habit></app-habit>
+      </div>
+    </div>
+    <div class="cal">
+      <div>
+        <button class="fab"(click)="toggleModal()">+</button>
+        <div class="modal-overlay" *ngIf="isModalOpen" (click)="toggleModal()">
+          <div class="modal-content"(click)="$event.stopPropagation()">
+            <button class="close-btn"(click)="toggleModal()">X</button>
+            <app-add-habit></app-add-habit>
+          </div>
+        </div>
+      </div>
+      <div class="calendar-container-wrapper">
+      <app-calendar></app-calendar>
+      </div>
+    </div> 
+  </div>
+</section>
