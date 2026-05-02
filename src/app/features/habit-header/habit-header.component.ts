@@ -7,6 +7,7 @@ interface Category {
   label: string;
   icon: string;
 }
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -27,14 +28,18 @@ export class HeaderComponent implements OnInit {
   overallStreak = 0;
   progressPct = 0;
   activeCategory = 'all';
-  
+  private sub: any;
   constructor(private habitService: HabitService) {}
-  ngOnInit(): void {
-    this.loadStats();
-  }
+  
   loadStats() {
     this.overallStreak = this.habitService.getMaxStreak();
     this.progressPct = this.habitService.getOverallWeeklyProgress();
   }
-
+ ngOnInit(): void {
+    // ← every time habits change, recalculate
+    this.sub = this.habitService.habits$.subscribe(() => {
+      this.overallStreak = this.habitService.getMaxStreak();
+      this.progressPct = this.habitService.getOverallWeeklyProgress();
+    });
+  }
 }

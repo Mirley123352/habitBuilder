@@ -6,9 +6,13 @@ import { BehaviorSubject } from "rxjs";
 @Injectable({providedIn:'root'})
 export class HabitService{
     
-    constructor(private storage:StorageService){
+    
+  private habitsSubject = new BehaviorSubject<Habit[]>([]);
+  habits$ = this.habitsSubject.asObservable();
 
-    }
+  constructor(private storage: StorageService) {
+    this.habitsSubject.next(this.storage.getHabits());
+  }
     selectedCategory:string='All';
 
     getHabits():Habit[]{
