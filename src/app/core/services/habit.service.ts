@@ -19,7 +19,7 @@ export class HabitService{
     private refresh() {
         const habits = this.storage.getHabits();
         this.habitsSignal.set(habits);
-        this.habitsSubject.next(habits); // ✅ missing link
+        this.habitsSubject.next(habits);
     }
 
     getHabits():Habit[]{
@@ -114,51 +114,34 @@ export class HabitService{
         return dates;
     }
 
-//     getOverallWeeklyProgress(): number {
-//     const habits = this.getHabits();
-//     if (habits.length === 0) return 0;
+    getMaxStreak(): number {
+        const habits = this.getHabits();
+        if (habits.length === 0) return 0;
+        return Math.max(...habits.map(h => h.streak));
+    }
 
-//     const startOfWeek = this.getStartOfWeek(new Date());
-//     const daysSoFar = new Date().getDay() + 1;
-//     const maxPossible = habits.length * daysSoFar;
+    getOverall7DayProgress(): number {
+        const habits = this.getHabits();
+        if (habits.length === 0) return 0;
 
-//     let totalDone = 0;
-//     habits.forEach(habit => {
-//       totalDone += habit.completedDates.filter(
-//         d => new Date(d) >= startOfWeek
-//       ).length;
-//     });
-//      return maxPossible ? Math.min((totalDone / maxPossible) * 100, 100) : 0;
-//   }
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-  getMaxStreak(): number {
-    const habits = this.getHabits();
-    if (habits.length === 0) return 0;
-    return Math.max(...habits.map(h => h.streak));
-  }
+        const sevenDaysAgo = new Date(today);
+        sevenDaysAgo.setDate(today.getDate() - 6);
 
-  getOverall7DayProgress(): number {
-  const habits = this.getHabits();
-  if (habits.length === 0) return 0;
+        let completed = 0;
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+        habits.forEach(habit => {
+            completed += habit.completedDates.filter(dateStr => {
+            const d = new Date(dateStr);
+            d.setHours(0, 0, 0, 0);
+            return d >= sevenDaysAgo && d <= today;
+        }).length;
+    });
 
-  const sevenDaysAgo = new Date(today);
-  sevenDaysAgo.setDate(today.getDate() - 6);
+    const maxPossible = habits.length * 7;
 
-  let completed = 0;
-
-  habits.forEach(habit => {
-    completed += habit.completedDates.filter(dateStr => {
-      const d = new Date(dateStr);
-      d.setHours(0, 0, 0, 0);
-      return d >= sevenDaysAgo && d <= today;
-    }).length;
-  });
-
-  const maxPossible = habits.length * 7;
-
-  return Math.round((completed / maxPossible) * 100);
+    return Math.round((completed / maxPossible) * 100);
 }
 }
