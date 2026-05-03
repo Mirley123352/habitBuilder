@@ -1,18 +1,25 @@
 import { Injectable ,signal,computed} from "@angular/core";
 import { Habit } from "../models/habit.model";
 import { StorageService } from "./storage.service";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({providedIn:'root'})
 export class HabitService{
     private habitsSignal = signal<Habit[]>([]);
+    private habitsSubject = new BehaviorSubject<Habit[]>([]);
+    habits$: Observable<Habit[]> = this.habitsSubject.asObservable();
     
-    constructor(private storage:StorageService){
-        this.habitsSignal.set(this.storage.getHabits());
+    constructor(private storage: StorageService) {
+        const habits = this.storage.getHabits();
+        this.habitsSignal.set(habits);
+        this.habitsSubject.next(habits);
     }
     selectedCategory:string='All';
 
     private refresh() {
-    this.habitsSignal.set(this.storage.getHabits());
+        const habits = this.storage.getHabits();
+        this.habitsSignal.set(habits);
+        this.habitsSubject.next(habits); // ✅ missing link
     }
 
     getHabits():Habit[]{
@@ -97,6 +104,7 @@ export class HabitService{
         const today=new Date().toISOString().split('T')[0];
         return habit.completedDates.includes(today);
     }
+
     getCompletedDates():Set<string>{
         const dates=new Set<string>();
 
@@ -105,4 +113,52 @@ export class HabitService{
         });
         return dates;
     }
+
+//     getOverallWeeklyProgress(): number {
+//     const habits = this.getHabits();
+//     if (habits.length === 0) return 0;
+
+//     const startOfWeek = this.getStartOfWeek(new Date());
+//     const daysSoFar = new Date().getDay() + 1;
+//     const maxPossible = habits.length * daysSoFar;
+
+//     let totalDone = 0;
+//     habits.forEach(habit => {
+//       totalDone += habit.completedDates.filter(
+//         d => new Date(d) >= startOfWeek
+//       ).length;
+//     });
+//      return maxPossible ? Math.min((totalDone / maxPossible) * 100, 100) : 0;
+//   }
+
+  getMaxStreak(): number {
+    const habits = this.getHabits();
+    if (habits.length === 0) return 0;
+    return Math.max(...habits.map(h => h.streak));
+  }
+
+  getOverall7DayProgress(): number {
+  const habits = this.getHabits();
+  if (habits.length === 0) return 0;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const sevenDaysAgo = new Date(today);
+  sevenDaysAgo.setDate(today.getDate() - 6);
+
+  let completed = 0;
+
+  habits.forEach(habit => {
+    completed += habit.completedDates.filter(dateStr => {
+      const d = new Date(dateStr);
+      d.setHours(0, 0, 0, 0);
+      return d >= sevenDaysAgo && d <= today;
+    }).length;
+  });
+
+  const maxPossible = habits.length * 7;
+
+  return Math.round((completed / maxPossible) * 100);
+}
 }
