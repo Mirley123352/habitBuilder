@@ -1,0 +1,27 @@
+<div class="calendar-container">
+    <div class="calendar-header">
+        <h2>{{monthName}}{{year}}</h2>
+    </div>
+    <div class="calendar-card">
+        <div class="calendar-weekdays">
+            <div *ngFor="let d of ['MON','TUE','WED','THU','FRI','SAT','SUN']">
+                {{d}}
+            </div>
+        </div>
+        <div class="calendar-grid">
+            <div *ngFor="let cell of calendarCells()" class="day-cell"
+              [class.empty]="!cell.date"
+              [class.active]="cell.isToday">
+              <span *ngIf="cell.date" class="day-number">
+                {{cell.dayNumber}}
+              </span>
+              <div class="day">
+                <span class="completed-dot"
+                *ngIf="cell.date && cell.isCompleted">
+                </span>
+              </div>
+            </div>
+        </div>
+    </div>
+
+</div>

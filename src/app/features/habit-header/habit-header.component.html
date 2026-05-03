@@ -1,0 +1,26 @@
+<header class="app-header">
+
+  <div class="header-top">
+    <div class="date-block">
+      <span class="day-name">{{ today | date:'EEEE' }}</span>
+      <span class="date-full">{{ today | date:'MMMM d, y' }}</span>
+    </div>
+    <div class="streak-badge">
+      <span>🔥</span>
+      <span class="streak-count">{{ overallStreak }}</span>
+      <span class="streak-label">day streak</span>
+    </div>
+  </div>
+
+  <div class="weekly-progress">
+    <div class="progress-header">
+      <span class="progress-label">Weekly Progress</span>
+      <span class="progress-pct">{{ progressPct | number:'1.0-0' }}%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" [style.width.%]="progressPct"></div>
+    </div>
+  </div>
+
+
+</header>

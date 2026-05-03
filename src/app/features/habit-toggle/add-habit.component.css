@@ -1,0 +1,43 @@
+.add-habit{
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.add-habit input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.icon-picker{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.icon-picker span{
+    font-size: 24px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.icon-picker span.selected{
+    background: #6200ea;
+    color: white;
+}
+
+.add-btn{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+}
