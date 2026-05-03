@@ -3,16 +3,16 @@ import { HabitService } from "../../core/services/habit.service";
 import { CommonModule } from "@angular/common";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { Habit } from "../../core/models/habit.model";
+import { StreakHighlightDirective } from "../../shared/directives/streak-glow.directive";
 
 @Component({
     selector:'app-habit',
     standalone:true,
-    imports:[CommonModule],
+    imports:[CommonModule, StreakHighlightDirective],
     templateUrl:'./habit-card.component.html',
     styleUrls:['./habit-card.component.css'],
 })
 export class HabitCardComponent{
-    // @Input() habitId!:Habit;
 
     constructor(public habitService:HabitService){}
 

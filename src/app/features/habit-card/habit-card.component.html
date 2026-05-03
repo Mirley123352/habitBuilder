@@ -13,6 +13,7 @@
   <div
     class="habit-card"
     *ngFor="let habit of filteredHabits; let i = index"
+    [appStreakHighlight]="habit.streak"
     [class.completed]="habit.completedDates"
     [hidden]="habitService.selectedCategory !== 'All' && habit.category !== habitService.selectedCategory"
   >
