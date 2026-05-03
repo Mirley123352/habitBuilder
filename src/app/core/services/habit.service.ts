@@ -73,23 +73,22 @@ export class HabitService {
         this.refresh();
       }
 
-  toggleToday(habitId: number): void {
-    const habits = this.storage.getHabits();
-    const habit = habits.find(h => h.id === habitId);
-    if (!habit) return;
-
-    const today = new Date().toISOString().split('T')[0];
-    if (!habit.completedDates.includes(today)) {
-      habit.completedDates.push(today);
-      habit.streak++;
-    } else {
-      habit.completedDates = habit.completedDates.filter(d => d !== today);
-      habit.streak = this.calculateStreak(habit);
+  toggleToday(habitId:number){
+        const habit=this.getHabits().find(h=>h.id===habitId);
+        if(!habit)return ;
+        
+        const today=new Date().toISOString().split('T')[0];
+        if(!habit.completedDates.includes(today)){
+            habit.completedDates.push(today);
+            habit.streak++;
+            this.storage.setHabits(this.getHabits());
+        }
+        else{
+            habit.completedDates=habit.completedDates.filter(d=>d!==today);
+        }
+        this.storage.setHabits(this.getHabits());
+        this.refresh();
     }
-
-    this.storage.setHabits(habits);
-    this.refresh();   // ← header gets updated here
-  }
 
   getWeeklyProgress(habitId: number): number {
     const habit = this.getHabits().find(h => h.id === habitId);
