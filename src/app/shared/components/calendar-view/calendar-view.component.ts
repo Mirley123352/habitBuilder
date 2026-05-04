@@ -1,4 +1,4 @@
-import { Component, OnInit ,computed} from "@angular/core";
+import { Component, computed} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CalendarService } from "../../../core/services/calendar.service";
 import { HabitService } from "../../../core/services/habit.service";
