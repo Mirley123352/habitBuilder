@@ -21,7 +21,11 @@ export class AddHabitComponent{
 
     }
     addHabit(){
-        if(!this.habitService.selectedCategory||this.habitService.selectedCategory==='All'){
+        const trimmedname=this.name.trim();
+        if(!trimmedname){
+            return;
+        }
+        if((!this.habitService.selectedCategory||this.habitService.selectedCategory==='All')){
             return;
         }
         this.habitService.addHabit({

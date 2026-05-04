@@ -17,10 +17,17 @@
     [class.completed]="habit.completedDates"
     [hidden]="habitService.selectedCategory !== 'All' && habit.category !== habitService.selectedCategory"
   >
-    <div>
-      <h3>{{ habit.icon }} {{ habit.name }}</h3>
-      <span>{{ habit.category }}</span>
-    </div>
+    <div class="habit-info">
+  <h3>{{ habit.icon }} {{ habit.name }}</h3>
+
+  <p class="habit-streak">
+    🔥 {{ habit.streak }} day streak
+  </p>
+
+  <span class="habit-category">
+    {{ habit.category }}
+  </span>
+</div>
 
     <button
       class="complete-btn"
