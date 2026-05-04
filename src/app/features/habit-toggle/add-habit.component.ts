@@ -14,6 +14,7 @@ export class AddHabitComponent{
     name='';
     category:any='Health';
     selectedIcon='🔨';
+    errorMessage='';
 
     icons=['🔨','📚','🤸‍♀️','⭐','🛌'];
     
@@ -26,6 +27,7 @@ export class AddHabitComponent{
             return;
         }
         if((!this.habitService.selectedCategory||this.habitService.selectedCategory==='All')){
+            this.errorMessage='Please select a category first (not "All").';
             return;
         }
         this.habitService.addHabit({

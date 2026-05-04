@@ -9,5 +9,6 @@
           {{icon}}
         </span>
     </div>
+    <p *ngIf="errorMessage" style="color: red; font-size: 13px;">{{ errorMessage }}</p>
     <button class="add-btn"(click)="addHabit()">Add Habit</button>
 </div>

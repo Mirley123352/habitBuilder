@@ -1,7 +1,6 @@
-
 <section class="container">
   <div class="content">
-      <app-header></app-header>
+    <app-header></app-header>
     <div class="habit-panel">
       <div>
         <app-habit></app-habit>
@@ -9,19 +8,17 @@
     </div>
     <div class="cal">
       <div>
-        <button class="fab"(click)="toggleModal()">+</button>
+        <button class="fab" (click)="toggleModal()">+</button>
         <div class="modal-overlay" *ngIf="isModalOpen" (click)="toggleModal()">
-          <div class="modal-content"(click)="$event.stopPropagation()">
-            <button class="close-btn"(click)="toggleModal()">X</button>
-            <div>
+          <div class="modal-content" (click)="$event.stopPropagation()">
+            <button class="close-btn" (click)="toggleModal()">X</button>
             <app-add-habit></app-add-habit>
-            </div>
           </div>
         </div>
       </div>
       <div class="calendar-container-wrapper">
-      <app-calendar></app-calendar>
+        <app-calendar></app-calendar>
       </div>
-    </div> 
+    </div>
   </div>
 </section>
