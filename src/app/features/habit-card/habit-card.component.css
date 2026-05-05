@@ -1,0 +1,114 @@
+.quick-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.quick-toggle button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #d1fae5;
+  cursor: pointer;
+}
+
+.quick-toggle button.active {
+  background: #1d9e75;
+  color: white;
+}
+
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  gap: 16px;
+}
+
+.habit-card {
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items:start;
+  justify-content: space-between;
+  box-shadow: none;
+  width: 100%;
+  max-width: 300px;
+
+  transition: transform .4s ease, opacity .4s ease;
+}
+
+.complete-btn {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3px solid #1d9e75;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.complete-btn .checkmark {
+  font-size: 18px;
+  color: transparent;
+  transition: all 0.3s ease;
+  transform: scale(0);
+}
+
+
+.complete-btn.checked {
+  background: #1d9e75;
+  border-color: #1d9e75;
+}
+
+.complete-btn.checked .checkmark {
+  color: white;
+  transform: scale(1);
+}
+
+.progress-container{
+    width: 100%;
+    height: 6px;
+    background-color: #d1fae5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar{
+    height: 100%;
+    width: 0%;
+    background-color: #1d9e75;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-bar.completed{
+    background-color: #0f6e56;
+}
+
+.delete-btn{
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.2s ease,transform 0.2s ease;
+}
+
+.delete-btn:hover{
+  opacity: 1;
+  transform: scale(1.1);
+}
